@@ -60,11 +60,21 @@ public class LinkedListDeque<Pokemon> {
     }
 
     public void addLast(Pokemon item) {
-        Node temp = sentinel.prev;
-        Node front = sentinel.next;
-        sentinel.prev = new Node(temp, front,item);
-        this.size += 1;
+        if (this.isEmpty()) {
+            Node newNode = new Node(null, null, item);
+            sentinel.prev = newNode;
+            sentinel.next = newNode;
+            newNode.next = newNode;
+            newNode.prev = newNode;
+        } else {
+            Node temp = sentinel.prev;
+            Node newNode = new Node(temp, sentinel.next,item);
+            sentinel.prev = newNode;
+            temp.next = newNode;
+            sentinel.next.prev = newNode;
+        }
 
+        this.size += 1;
     }
 
     public boolean isEmpty() {
