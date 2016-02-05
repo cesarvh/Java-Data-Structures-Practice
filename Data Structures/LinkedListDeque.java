@@ -1,7 +1,8 @@
 public class LinkedListDeque<Pokemon> {
     /*
     * Linked list implementation of Deque
-    * Add and remove operations must not involve looping/recursion. O(1)  
+    * Add and remove operations must not involve 
+    * looping/recursion. O(1)  
     * Get: Must use iteration
     * Size: Must be O(1)
     * 
@@ -85,30 +86,60 @@ public class LinkedListDeque<Pokemon> {
         return this.size;
     }
 
+    /* Prints out the Deque from Front to Back*/
     public void printDeque() {
-        // Node temp = sentinel;
-        // while (i < lld1.size()) {
-        //  temp = temp.next;
-        //  System.out.println(temp.data);
-        //  i += 1;
-        // }
+        Node pointer = sentinel.next;
+        int counter = 0;
+        while (counter != this.size() - 1) {
+            System.out.print(pointer.data + ", ");
+            counter += 1;
+            pointer = pointer.next;
+        }
+        System.out.println(pointer.data + ".");
 
     }
 
     public Pokemon removeFirst() {
-        if (this.size() == 0) return null ;
-        this.size -= 1;
-        return null;
+        if (this.size() == 0){ return null;}
+        else {
+            Node toRemove = sentinel.next;
+            Node temp = sentinel.next.next;
+            temp.prev = sentinel.prev;
+            toRemove.next = null;
+            toRemove.prev = null;
+            sentinel.next = temp;
+            sentinel.prev.prev = temp;
+            size -= 1;
+            return (Pokemon) toRemove.data;
+
+        }
     }
 
     public Pokemon removeLast() {
-        
-        this.size -= 1;
-        return null;
+        if (this.size() == 0){ return null;}
+        else { 
+            Node toRemove = sentinel.prev;
+            Node temp = sentinel.prev.prev;
+            Node front = sentinel.next;
+            sentinel.prev = temp;
+            temp.next = front;
+            front.prev = temp;
+            toRemove.next = null;
+            toRemove.prev = null;
+            size -= 1;
+            return (Pokemon) toRemove.data;
+        }
+
     }
 
     public Pokemon get(int index) {
-        return null;
+        Node pointer = sentinel.next;
+        int counter = 0;
+        while (counter != index) {
+            pointer = pointer.next;
+            counter += 1;
+        }
+        return (Pokemon) pointer.data;
     }
 
 }
