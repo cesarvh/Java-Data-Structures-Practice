@@ -3,3 +3,5 @@ Implementations of various Data Structures implemented whilst Lab Assisting for 
 
 <h1> Current Contents </h1>
 - LinkedListDequeue: Circular Doubly Linked List 
+- ArrayDeque: Circular Array List
+- CommitTree: Directed Graph, mimicking the structure of Git
