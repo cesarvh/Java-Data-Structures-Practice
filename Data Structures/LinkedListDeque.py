@@ -7,43 +7,43 @@ class LinkedListDeque(object):
 		self.size = 0
 
 	def get(self, index):
-		if (index > self.size):
+		if (index > self.getSize()):
 			return None
 		pointer = self.sentinel
 		i = 0
 		while (i < index):
-			pointer = pinter.next
+			pointer = pointer.nxt
 			i += 1
 		return pointer.data
-	
+
 	def addFirst(self, item):
-		if (self.size == 0):
+		if (self.getSize() == 0):
 			newNode = Node(None, None, item)
 			self.sentinel.prev = newNode
-			self.sentinel.next = newNode
-			newNode.next = newNode
+			self.sentinel.nxt = newNode
+			newNode.nxt = newNode
 			newNode.prev = newNode
 		else:
-			temp = self.sentinel.next
+			temp = self.sentinel.nxt
 			newNode = Node(self.sentinel.prev, temp, item)
-			self.sentinel.next = newNode
-			temp.prev = self.sentinel.next
-			self.sentinel.next = self.sentinel.next
+			self.sentinel.nxt = newNode
+			temp.prev = self.sentinel.nxt
+			self.sentinel.nxt = self.sentinel.nxt
 		self.size += 1
 
 	def addLast(self, item):
-		if (self.size == 0):
+		if (self.getSize() == 0):
 			newNode = Node(None, None, item)
 			self.sentinel.prev = newNode;
-			self.sentinel.next = newNode
-			newNode.next = newNode;
+			self.sentinel.nxt = newNode
+			newNode.nxt = newNode;
 			newNode.prev = newNode;
 		else:
 			temp =self.sentinel.prev
-			newNode = Node(temp, self.sentinel.next, item)
+			newNode = Node(temp, self.sentinel.nxt, item)
 			self.sentinel.prev = newNode
-			temp.next = newNode
-			self.sentinel.next.prev = newNode
+			temp.nxt = newNode
+			self.sentinel.nxt.prev = newNode
 		self.size += 1
 
 	def getSize(self):
@@ -53,13 +53,50 @@ class LinkedListDeque(object):
 		return self.size == 0
 
 	def printDeque(self):
-		if (self.size == 0): return
-		temp = self.sentinel.next
+		if (self.getSize() == 0): return
+		temp = self.sentinel.nxt
 		i = 0
 		while (i < self.getSize()):
 			print temp.data
-			temp = temp.next
+			temp = temp.nxt
 			i += 1
+
+	def printBackwards(self):
+		if (self.getSize() == 0): return
+		temp = self.sentinel.prev
+		i = 0
+		while (i < self.getSize()):
+			print temp.data
+			temp = temp.prev
+			i += 1
+
+	def removeFirst(self):
+		if (self.getSize() == 0): return None
+		else:	
+			toRemove = self.sentinel.nxt	
+			temp = self.sentinel.nxt.nxt		
+			temp.prev = self.sentinel.prev
+			toRemove.nxt = None
+			toRemove.prev = None
+			self.sentinel.nxt = temp
+			self.sentinel.prev.prev = temp;
+			self.size -= 1;
+			return toRemove;
+
+	def removeLast(self):
+		if (self.getSize() == 0): return None
+		else:
+			toRemove = self.sentinel.prev
+			temp = self.sentinel.prev.prev
+			front = self.sentinel.nxt
+			self.sentinel.prev = temp
+			temp.nxt = front
+			front.prev = temp
+			toRemove.nxt = None
+			toRemove.prev = None
+			self.size -= 1
+			return toRemove
+
 
 
 
@@ -71,53 +108,3 @@ class Node(object):
 			self.prev = prev
 			self.data = data
 
-
-
-
-#     /* Prints out the Deque from Front to Back*/
-#     public void printDeque() {
-#         Node pointer = sentinel.next;
-#         int counter = 0;
-#         while (counter != this.size() - 1) {
-#             System.out.print(pointer.data + ", ");
-#             counter += 1;
-#             pointer = pointer.next;
-#         }
-#         System.out.println(pointer.data + ".");
-
-#     }
-
-#     public Pokemon removeFirst() {
-#         if (this.size() == 0){ return None;}
-#         else {
-#             Node toRemove = sentinel.next;
-#             Node temp = sentinel.next.next;
-#             temp.prev = sentinel.prev;
-#             toRemove.next = None;
-#             toRemove.prev = None;
-#             sentinel.next = temp;
-#             sentinel.prev.prev = temp;
-#             size -= 1;
-#             return (Pokemon) toRemove.data;
-
-#         }
-#     }
-
-#     public Pokemon removeLast() {
-#         if (this.size() == 0){ return None;}
-#         else { 
-#             Node toRemove = sentinel.prev;
-#             Node temp = sentinel.prev.prev;
-#             Node front = sentinel.next;
-#             sentinel.prev = temp;
-#             temp.next = front;
-#             front.prev = temp;
-#             toRemove.next = None;
-#             toRemove.prev = None;
-#             size -= 1;
-#             return (Pokemon) toRemove.data;
-#         }
-
-#     }
-
-# }
