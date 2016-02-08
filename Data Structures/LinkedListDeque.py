@@ -44,6 +44,24 @@ class LinkedListDeque(object):
 			self.sentinel.prev = newNode
 			temp.next = newNode
 			self.sentinel.next.prev = newNode
+		self.size += 1
+
+	def getSize(self):
+		return self.size
+
+	def isEmpty(self):
+		return self.size == 0
+
+	def printDeque(self):
+		if (self.size == 0): return
+		temp = self.sentinel.next
+		i = 0
+		while (i < self.getSize()):
+			print temp.data
+			temp = temp.next
+			i += 1
+
+
 
 
 class Node(object):
@@ -55,3 +73,51 @@ class Node(object):
 
 
 
+
+#     /* Prints out the Deque from Front to Back*/
+#     public void printDeque() {
+#         Node pointer = sentinel.next;
+#         int counter = 0;
+#         while (counter != this.size() - 1) {
+#             System.out.print(pointer.data + ", ");
+#             counter += 1;
+#             pointer = pointer.next;
+#         }
+#         System.out.println(pointer.data + ".");
+
+#     }
+
+#     public Pokemon removeFirst() {
+#         if (this.size() == 0){ return None;}
+#         else {
+#             Node toRemove = sentinel.next;
+#             Node temp = sentinel.next.next;
+#             temp.prev = sentinel.prev;
+#             toRemove.next = None;
+#             toRemove.prev = None;
+#             sentinel.next = temp;
+#             sentinel.prev.prev = temp;
+#             size -= 1;
+#             return (Pokemon) toRemove.data;
+
+#         }
+#     }
+
+#     public Pokemon removeLast() {
+#         if (this.size() == 0){ return None;}
+#         else { 
+#             Node toRemove = sentinel.prev;
+#             Node temp = sentinel.prev.prev;
+#             Node front = sentinel.next;
+#             sentinel.prev = temp;
+#             temp.next = front;
+#             front.prev = temp;
+#             toRemove.next = None;
+#             toRemove.prev = None;
+#             size -= 1;
+#             return (Pokemon) toRemove.data;
+#         }
+
+#     }
+
+# }
