@@ -1,16 +1,17 @@
 public class LinkedList<Item>{
 	Node head;
 	int size;
+
 	public LinkedList() {
 		head = new Node(null, null);
 		size = 0;
 	}
 
-	public class Node()<Item> {
+	public class Node<Item> {
 		Item contents;
 		Node next;
 
-		public Node(contents, Node next) {
+		public Node(Item contents, Node next) {
 			this.contents = contents;
 			this.next = next;
 
@@ -35,31 +36,31 @@ public class LinkedList<Item>{
 
 	public void addLast(Item element) {}
 
-	public void clear()
+	public void clear() {}
 
-	public LinkedList<Item> clone() {}
+	public LinkedList<Item> clone() {return null;}
 
-	public Item getFirst() {}
+	public Item getFirst() {return null;}
 
-	public Item getLast() {}
+	public Item getLast() {return null;}
 
-	public Item get(int index) {}
+	public Item get(int index) {return null;}
 
 	/* Gets the first item of the list*/
-	public Item peek() {}
+	public Item peek() {return null;}
 
 	/* Gets the last item of the list*/
-	public Item peekLast() {}
+	public Item peekLast() {return null;}
 
 	/* Retrieves and removes the first element of the list*/
-	public Item poll() {}
+	public Item poll() {return null;}
 
 	/* Retrieves and removes the last element of the list*/
-	public Item pollLast() {}
+	public Item pollLast() {return null;}
 
-	public int size() {}
+	public int size() {return null;}
 
-	public boolean isEmpty() {}
+	public boolean isEmpty() {return null;}
 
 
 }
